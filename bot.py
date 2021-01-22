@@ -1,11 +1,16 @@
+from __future__ import unicode_literals
 from pyrogram import Client, filters
+import youtube_dl
+import glob
+import os
+ydl_opts = {"format": "bestaudio"}
 
 app = Client(
     "my_bot",
-	api_id=12345,
-	api_hash="0123456789abcdef0123456789abcdef",
-	bot_token="123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11",
-)  
+        api_id=2775800,
+        api_hash="b9bdfb183b41945732f39510fbf35a22",
+        bot_token="1587276324:AAGENP-c1ps6CfHJIiHhzMYeUowCIWJkweA",
+)
 
 @app.on_message(filters.command(["hello"]))
 async def start(_, message):
@@ -15,7 +20,6 @@ async def start(_, message):
 async def start(_, message):
     await message.reply_text("The world is not perfect but it aint that bad...")
 
-
 @app.on_message(filters.command(["whomadeu"]))
 async def start(_, message):
     await message.reply_text("kodyk spent 10 mins breaking his fingers on the keyboard")
@@ -24,4 +28,19 @@ async def start(_, message):
 async def start(_, message):
     await message.reply_text(f"same 2 you {message.from_user.mention}")
 
+@app.on_message(filters.command(["areuded"]))
+async def start(_, message):
+    await message.reply_text("i am alive, go to hell")
+
+@app.on_message(filters.command(['ytdldownload']))
+async def start(_, message):
+        text = message.text.replace("/ytdldownload ", '')
+        await message.reply_text("Downloading From Kritarth's Very Slow Internet Connection...")
+        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+                info_dict = ydl.extract_info(text, download=False)
+                audio_file = ydl.prepare_filename(info_dict)
+                ydl.process_info(info_dict)
+                os.rename(audio_file, "music.webm")
+        await message.reply_audio("music.webm")
+        os.system("rm -r ~/Kode/kodykbot/*.webm")
 app.run()
