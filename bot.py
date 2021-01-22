@@ -7,9 +7,9 @@ ydl_opts = {"format": "bestaudio"}
 
 app = Client(
     "my_bot",
-        api_id=2775800,
-        api_hash="b9bdfb183b41945732f39510fbf35a22",
-        bot_token="1587276324:AAGENP-c1ps6CfHJIiHhzMYeUowCIWJkweA",
+        api_id=id,
+        api_hash="hash",
+        bot_token="token",
 )
 
 @app.on_message(filters.command(["hello"]))
