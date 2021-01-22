@@ -42,5 +42,5 @@ async def start(_, message):
                 ydl.process_info(info_dict)
                 os.rename(audio_file, "music.webm")
         await message.reply_audio("music.webm")
-        os.system("rm -r ~/Kode/kodykbot/*.webm")
+        os.system("rm -r ~/Kode/kodykbot/music.webm")
 app.run()
