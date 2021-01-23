@@ -1,14 +1,7 @@
 from __future__ import unicode_literals
 from pyrogram import Client, filters
-from youtube_dl import YoutubeDL
-import youtube_dl
-import glob
 import wikipedia
 import os
-import translate
-from translate import Translator
-
-ydl_opts = {"format": "bestaudio"}
 
 app = Client(
     "my_bot",
@@ -40,18 +33,6 @@ async def killyourself(_, message):
 @app.on_message(filters.command(["areuded"]))
 async def areuded(_, message):
     await message.reply_text("i am alive, go to hell")
-
-@app.on_message(filters.command(['ytdownload']))
-async def ytdownload(_, message):
-        text = message.text.replace("/ytdldownload ", '')
-        await message.reply_text("Downloading From Kritarth's Very Slow Internet Connection...")
-        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-                info_dict = ydl.extract_info(text, download=False)
-                audio_file = ydl.prepare_filename(info_dict)
-                ydl.process_info(info_dict)
-                os.rename(audio_file, "music.webm")
-        await message.reply_audio("music.webm")
-        os.system("rm -r ~/Kode/kodykbot/music.webm")
 
 @app.on_message(filters.command(['wikipedia']))
 async def wikisearch(_, message):
