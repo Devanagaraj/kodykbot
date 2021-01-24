@@ -1,6 +1,0 @@
-pyrogram
-pyjokes
-wikipedia
-os
-PyDictionary
-
