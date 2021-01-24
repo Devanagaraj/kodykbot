@@ -12,7 +12,7 @@ app = Client(
         bot_token="YOURBOTTOKEN",
 )
 
-@app.on_message(filters.regex("hello" or "hi" or "Hi" or "Hello"))
+@app.on_message(filters.regex("Hi")) 
 async def hello(_, message):
     await message.reply_text(f"Hello {message.from_user.mention}")
 
