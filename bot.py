@@ -7,9 +7,9 @@ from quoters import Quote
 
 app = Client(
     "my_bot",
-        api_id=2775800,
-        api_hash="b9bdfb183b41945732f39510fbf35a22",
-        bot_token="1587276324:AAGENP-c1ps6CfHJIiHhzMYeUowCIWJkweA",
+        api_id=YOURAPIID,
+        api_hash="YOURAPIHASH",
+        bot_token="YOURBOTTOKEN",
 )
 
 @app.on_message(filters.command(["hello"]))
