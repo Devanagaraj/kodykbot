@@ -87,9 +87,9 @@ async def quoter(_, message):
 @app.on_message(filters.command(['stackoverflow']))
 async def stackoverflow(_, message):
         try:
-            query = message.text.replace("stackoverflow ", '')
+            stfquery = message.text.split(None,1)[1]
             await message.reply_text("Searching for Answers...")
-            stfresult = os.popen('howdoi' + query ).read()
+            stfresult = os.popen('howdoi ' + stfquery ).read()
             await message.reply_text(stfresult)
         except:
             await message.reply_text("Found Nothing...")
