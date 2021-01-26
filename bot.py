@@ -12,7 +12,7 @@ app = Client(
         bot_token="YOURBOTTOKEN",
 )
 
-@app.on_message(filters.regex("Hi")) 
+@app.on_message(filters.command("hello")) 
 async def hello(_, message):
     await message.reply_text(f"Hello {message.from_user.mention}")
 
@@ -30,7 +30,7 @@ async def start(_, message):
         /stackoverflow Search For Answers in StackOverFlow
         ''')
 
-@app.on_message(filters.regex("howztheworld"))
+@app.on_message(filters.command("howztheworld"))
 async def howzwrld(_, message):
     await message.reply_text("The world is not perfect but it aint that bad...")
 
@@ -42,7 +42,7 @@ async def creator(_, message):
 async def whomadeu(_, message):
     await message.reply_text("https://github.com/Kody-K/kodykbot")
 
-@app.on_message(filters.regex("killyourself"))
+@app.on_message(filters.regex("kill yourself"))
 async def killyourself(_, message):
     await message.reply_text(f"same 2 you {message.from_user.mention}")
 
