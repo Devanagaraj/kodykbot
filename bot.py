@@ -14,6 +14,8 @@ import sys
 import traceback
 from io import StringIO
 from inspect import getfullargspec
+import wget
+import json
 
 # sharing my very sensitive info
 app = Client(
@@ -203,7 +205,7 @@ async def weather(_, message: Message):
     data = r.text
     await message.reply_text(f"`{data}`")
 
-# /music
+# /dlmusic
 ydl_opts = {
     'format': 'bestaudio',
     'writethumbnail': True
@@ -254,6 +256,35 @@ def get_file_extension_from_url(url):
     url_path = urlparse(url).path
     basename = os.path.basename(url_path)
     return basename.split(".")[-1]
+
+# /saavndl
+
+JSMAPI= "https://jiosaavnapi.bhadoo.uk/result/?query="
+
+@app.on_message(filters.command("saavndl")
+async def song(_, message: Message):
+    if len(message.command) < 2:
+        await message.reply_text("/song requires an argument.")
+        return
+    text = message.text.split(None, 1)[1]
+    query = text.replace(" ", "%20")
+    m = await message.reply_text("Searching...")
+    try:
+        r = requests.get(f"{JSMAPI}{query}")
+    except Exception as e:
+        await m.edit(str(e))
+        return
+    sname = r.json()[0]['song']
+    slink = r.json()[0]['media_url']
+    ssingers = r.json()[0]['singers']
+    file = wget.download(slink)
+    ffile = file.replace("mp4", "m4a")
+    os.rename(file, ffile)
+    await message.reply_audio(audio=ffile, title=sname,
+                              performer=ssingers)
+    os.remove(ffile)
+    await m.delete()
+
 
 app.run()
 
