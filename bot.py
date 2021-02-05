@@ -19,11 +19,12 @@ import json
 
 # sharing my very sensitive info
 app = Client(
-    "my_bot",
-        api_id=API_ID,
-        api_hash="API_HASH",
-        bot_token="API_TOKEN",
-)
+            "my_bot",
+             api_id=2775800,
+             api_hash="b9bdfb183b41945732f39510fbf35a22",
+             bot_token="1343321542:AAHdL9-vlPKlRfXmicZj3ySMZPZJ6PCoX",
+            )
+
 
 # eval
 async def aexec(code, client, message):
@@ -261,7 +262,7 @@ def get_file_extension_from_url(url):
 
 JSMAPI= "https://jiosaavnapi.bhadoo.uk/result/?query="
 
-@app.on_message(filters.command("saavndl")
+@app.on_message(filters.command("saavndl"))
 async def song(_, message: Message):
     if len(message.command) < 2:
         await message.reply_text("/song requires an argument.")
