@@ -1,0 +1,6 @@
+pyrogram
+wikipedia
+pyjokes
+quoters
+youtube_dl
+wget
