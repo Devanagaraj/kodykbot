@@ -1,6 +1,7 @@
 # importing work here
 from __future__ import unicode_literals
-from pyrogram import Client, filters
+from pyrogram import Client, filters 
+from pyrogram.types import ChatPermissions
 import wikipedia
 import os
 import pyjokes
@@ -20,9 +21,9 @@ import json
 # sharing my very sensitive info
 app = Client(
             "my_bot",
-             api_id=2775800,
-             api_hash="b9bdfb183b41945732f39510fbf35a22",
-             bot_token="1343321542:AAHdL9-vlPKlRfXmicZj3ySMZPZJ6PCoX",
+            api_id = API_ID,
+            api_hash ="API_HASH",
+            bot_token = "BOT_TOKEN",
             )
 
 
@@ -106,17 +107,31 @@ async def hello(_, message):
 @app.on_message(filters.command(["start"]))
 async def start(_, message):
     await message.reply_text('''
-        Hello NoobCoder, these are some commands you can try,
+Hello NoobCoder, these are some commands you can try with the BOT,
+        
         /areuded To Check if the bot is Alive
+        
         /creator Creator's GitHub Profile
+        
         /sourcecode Link to GitHub Repo
+        
         /website Creator's Website
+        
         /wikipedia Search For Articles in Wikipedia
+        
         /quote Get Quotes
+        
         /crackjoke Get A Geeky Joke
+        
         /stackoverflow Search For Answers in StackOverFlow
-        /dlmusic Download Music
+        
+        /dlmusic Download Music from YouTube and SoundCloud  
+        
+        /saavndl Download Music from JioSaavn
+        
         /howzdweather Get Weather Report of a City
+        
+        /l To run your Python Code from Telegram 
         ''')
 
 # howztheworld
@@ -260,8 +275,7 @@ def get_file_extension_from_url(url):
 
 # /saavndl
 
-JSMAPI= "https://jiosaavnapi.bhadoo.uk/result/?query="
-
+JSMAPI= "https://jiosaavnapi.bhadoo.uk/result/?query=" 
 @app.on_message(filters.command("saavndl"))
 async def song(_, message: Message):
     if len(message.command) < 2:
@@ -286,6 +300,25 @@ async def song(_, message: Message):
     os.remove(ffile)
     await m.delete()
 
+# /mute
+
+@app.on_message(filters.user(1057450432) & ~filters.forwarded & ~filters.via_bot & filters.command("mutenow"))
+async def mut(_, message):    
+    chat_id = message.chat.id
+    from_user_id = message.from_user.id
+    victim = message.reply_to_message.from_user.id
+    await message.chat.restrict_member(victim, permissions=ChatPermissions())
+    await message.reply_text("Muted!")
+
+# /unmute
+
+@app.on_message(filters.user(1057450432) & ~filters.forwarded & ~filters.via_bot & filters.command("unmutenow"))
+async def unmute(_, message: Message):
+    chat_id = message.chat.id
+    from_user_id = message.from_user.id
+    victim = message.reply_to_message.from_user.id
+    await message.chat.unban_member(victim)
+    await message.reply_text("Unmuted!")
 
 app.run()
 
