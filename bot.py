@@ -8,7 +8,6 @@ import pyjokes
 from quoters import Quote
 import requests
 from pyrogram.types import Message
-from googletrans import Translator
 from urllib.parse import urlparse
 import youtube_dl
 import sys
@@ -279,7 +278,7 @@ JSMAPI= "https://jiosaavnapi.bhadoo.uk/result/?query="
 @app.on_message(filters.command("saavndl"))
 async def song(_, message: Message):
     if len(message.command) < 2:
-        await message.reply_text("/song requires an argument.")
+        await message.reply_text("/saavndl requires an argument.")
         return
     text = message.text.split(None, 1)[1]
     query = text.replace(" ", "%20")
