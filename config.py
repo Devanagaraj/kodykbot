@@ -1,4 +1,4 @@
 # Bot Token here
-bot_token = "1587276324:AAGENP-c1ps6CfHJIiHhzMYeUowCIWJkweA"
+bot_token = YOUR BOT TOKEN
 
 JSMAPI= "https://jiosaavnapi.bhadoo.uk/result/?query=" 
