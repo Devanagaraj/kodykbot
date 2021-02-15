@@ -32,7 +32,10 @@ async def hello(_, message):
 @app.on_message(filters.command(["start"]))
 async def start(_, message):
     await message.reply_text('''
+```
 Hello NoobCoder, these are some commands you can try with the BOT,
+        
+        General:
         /areuded To Check if the bot is Alive
         /creator Creator's GitHub Profile
         /sourcecode Link to GitHub Repo
@@ -44,6 +47,20 @@ Hello NoobCoder, these are some commands you can try with the BOT,
         /dlmusic Download Music from YouTube and SoundCloud  
         /saavndl Download Music from JioSaavn
         /howzdweather Get Weather Report of a City
+        
+        Owner:
+        /l To run your Python Code from Telegram 
+        /shutdown Shutdown the Linux Machine on which the bot is running
+        /cancelshutdown Cancel Shutdown
+
+        Group Management:
+        /mutenow Mute a User
+        /unmutenow Unmute a User
+        /delete Delete a Message
+      
+
+        Will add more commands soon...
+```
         ''')
 
 # howztheworld
