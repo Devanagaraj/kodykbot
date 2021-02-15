@@ -34,8 +34,6 @@ Hello NoobCoder, these are some commands you can try with the BOT,
 
         Will add more commands soon...
 
-
-
 ```
 
 ## Requirements
