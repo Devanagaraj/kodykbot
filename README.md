@@ -29,12 +29,10 @@ Hello NoobCoder, these are some commands you can try with the BOT,
         Group Management:
         /mutenow Mute a User
         /unmutenow Unmute a User
-        /delete
-        
+        /delete Delete a Message
+      
 
         Will add more commands soon...
-
-
 
 ```
 
