@@ -46,6 +46,7 @@ Hello NoobCoder, these are some commands you can try with the BOT,
         /stackoverflow Search For Answers in StackOverFlow
         /dlmusic Download Music from YouTube and SoundCloud  
         /saavndl Download Music from JioSaavn
+        /fastdl Download Music from JioSaavn (For Slow Hoeroku like Servers)
         /howzdweather Get Weather Report of a City
         
         Owner:
@@ -156,7 +157,7 @@ ydl_opts = {
     'writethumbnail': True
 }
 
-
+# /dlmusic
 @app.on_message(filters.command(["dlmusic"]) & filters.user(sudoers))
 async def music(_, message: Message):
     if len(message.command) != 2:
@@ -202,6 +203,25 @@ def get_file_extension_from_url(url):
     basename = os.path.basename(url_path)
     return basename.split(".")[-1]
 
+# /fastdl
+@app.on_message(filters.command("fastdl"))
+async def song(_, message: Message):
+    if len(message.command) < 2:
+        await message.reply_text("/fastdl requires an argument.")
+        return
+    text = message.text.split(None, 1)[1]
+    query = text.replace(" ", "%20")
+    m = await message.reply_text("Searching...")
+    try:
+        r = requests.get(f"{JSMAPI}{query}")
+    except Exception as e:
+        await m.edit(str(e))
+        return
+    sname = r.json()[0]['song']
+    slink = r.json()[0]['media_url']
+    ssingers = r.json()[0]['singers']
+    await message.reply_audio(audio=slink, title=sname,
+                              performer=ssingers)
 # /saavndl
 @app.on_message(filters.command("saavndl"))
 async def song(_, message: Message):
@@ -240,7 +260,6 @@ async def mute(_, message):
         await message.reply_text("An Error Occured!")
 
 # /unmute
-
 @app.on_message(filters.user(sudoers) & ~filters.forwarded & ~filters.via_bot & filters.command("unmutenow"))
 async def unmute(_, message: Message):
     chat_id = message.chat.id
