@@ -20,7 +20,8 @@ from config import Config, JSMAPI
 from sudoers import sudoers, root
 
 # sharing my very sensitive info
-app = Client("kodyk_bot", bot_token= Config.BOT_TOKEN)
+app = Client("kodyk_bot", bot_token= Config.BOT_TOKEN ,
+             api_id=6, api_hash="eb06d4abfb49dc3eeb1aeb98ae0f581e",)
 
 # stuff starts here
 # /hello
