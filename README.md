@@ -55,6 +55,9 @@ Put your Bot Token in `config.py`
 
 Put your `user_id` and `sudoers user_id` in sudoers.py
 
+## Deploy button
+[<img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heroku" height="40"/>](https://heroku.com/deploy?template=https://github.com/Kody-K/kodykbot "Heroku")
+
 ## Usage 
 
 ```
