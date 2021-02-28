@@ -50,7 +50,6 @@ $ cd kodykbot
 $ pip3 install -r requirements.txt
 ```
 
-Put your API ID & API HASH in `config.ini`
 
 Put your Bot Token in `config.py`
 
