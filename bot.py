@@ -16,11 +16,11 @@ from io import StringIO
 from inspect import getfullargspec
 import wget
 import json
-from config import bot_token, JSMAPI 
+from config import Config, JSMAPI 
 from sudoers import sudoers, root
 
 # sharing my very sensitive info
-app = Client("kodyk_bot", bot_token=bot_token)
+app = Client("kodyk_bot", bot_token= Config.BOT_TOKEN)
 
 # stuff starts here
 # /hello
